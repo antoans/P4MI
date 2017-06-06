@@ -9,6 +9,19 @@
 
     <!-- Custom styles for this template -->
     <link href="css/notes.css" rel="stylesheet">
+    <script src="script.js"></script>
+    <script src='tinymce.min.js'></script>
+    <script>
+      tinymce.init({
+        selector: '#mytextarea',
+        theme : 'modern',
+        menubar : false,
+        height : 400,
+        skin : 'custom',
+        toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
+
+      });
+    </script>
   </head>
 
   <body>
@@ -33,7 +46,9 @@
           </ul>
         </div>
 		<div class="col-md-8 sidebar">
-          <div class="tools">//tools</div>
+          <div class="tools">
+            <textarea id="mytextarea">Hello, World!</textarea>
+          </div>
 		  <div class="note container-fluid"> 
 		    <div class="note-title">
 			  <h2>js:title</h2>
