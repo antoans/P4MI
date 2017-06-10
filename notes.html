@@ -25,27 +25,64 @@
   </head>
 
   <body>
+    <!-- Poppups -->
+    <div id="createNotebook" class="overlay">
+      <div class="popup">
+        <h2>Create notebook</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+          <input class="form-control small-margin" placeholder="Enter title" type="Text" name="noteBookName">
+          <a class="btn btn-primary btn-block" href="#">Create</a>
+        </div>
+      </div>
+    </div>
+    <div id="deleteNote" class="overlay">
+      <div class="popup">
+        <h2>Delete note</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+          <p>Are you sure you want to delete this Note?</p>
+          <div>
+            <a class="btn btn-primary yes-no-buttons" href="#">Yes</a>
+            <a class="btn btn-primary yes-no-buttons" href="#">No</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Poppups -->
+
+
     <div class="container-fluid">
       <div class="row left">
         <div class="col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">NOTEBOOKS<span class="sr-only">(current)</span></a></li>
-			<li><a href="#">+ Create notebook</a></li>
+			      <li><a href="#createNotebook">+ Create notebook</a></li>
             <li><a href="#">(Default notebook)</a></li>
             <li><a href="#">College</a></li>
             <li><a href="#">Work</a></li>
           </ul>
         </div>
 		<div class="col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">NOTES<span class="sr-only">(current)</span></a></li>
-			<li><a href="#">+ Create note</a></li>
-            <li><a href="#">note1</a></li>
-            <li><a href="#">note2</a></li>
-            <li><a href="#">note3</a></li>
-          </ul>
+        <ul class="nav nav-sidebar">
+          <li class="active"><a href="#">NOTES<span class="sr-only">(current)</span></a></li>
+  	       <li><a href="#">+ Create note</a></li>
+          <li><a href="#">note1</a></li>
+          <li><a href="#">note2</a></li>
+          <li><a href="#">note3</a></li>
+        </ul>
+    </div>
+    <div class="col-md-1 sidebar buttons-big-container">
+      <div class="big-buttons-container">
+        <div class="big-buttons">
+          <a><img class="button-icons" src="img/save-button.png"></a>  
         </div>
-		<div class="col-md-8 sidebar">
+        <div class="big-buttons">
+          <a href="#deleteNote"><img class="button-icons" src="img/delete-button.png"></a>  
+        </div>
+      </div>
+    </div>
+		<div class="col-md-7 sidebar no-padding-left">
           <div class="tools">
             <textarea id="mytextarea">Hello, World!</textarea>
           </div>
