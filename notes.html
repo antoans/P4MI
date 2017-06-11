@@ -9,18 +9,18 @@
 
     <!-- Custom styles for this template -->
     <link href="css/notes.css" rel="stylesheet">
-    <script src="script.js"></script>
+    <script src="jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src='tinymce.min.js'></script>
+    <script src="script.js"></script>
     <script>
-      tinymce.init({
-        selector: '#mytextarea',
-        theme : 'modern',
-        menubar : false,
-        height : 400,
-        skin : 'custom',
-        toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
-
-      });
+        tinymce.init({
+            selector: '#noteText',
+            theme : 'modern',
+            menubar : false,
+            height : 400,
+            skin : 'custom',
+            toolbar: 'save | insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
+        });
     </script>
   </head>
 
@@ -31,19 +31,21 @@
         <h2>Create notebook</h2>
         <a class="close" href="#">&times;</a>
         <div class="content">
-          <input class="form-control small-margin" placeholder="Enter title" type="Text" name="noteBookName">
-          <a class="btn btn-primary btn-block" href="#">Create</a>
+          <input id="newNotebookTitle" class="form-control small-margin" placeholder="Enter title" type="Text" name="noteBookName">
+          <a class="btn btn-primary btn-block" onclick='(function () {
+              onNoteBookCreate($("#newNotebookTitle").val());
+              $("#newNotebookTitle").val("")
+            })()' href="#" >Create</a>
         </div>
       </div>
     </div>
     <div id="deleteNote" class="overlay">
       <div class="popup">
         <h2>Delete note</h2>
-        <a class="close" href="#">&times;</a>
         <div class="content">
           <p>Are you sure you want to delete this Note?</p>
           <div>
-            <a class="btn btn-primary yes-no-buttons" href="#">Yes</a>
+            <a class="btn btn-primary yes-no-buttons" onclick="onDeleteNote()" href="#">Yes</a>
             <a class="btn btn-primary yes-no-buttons" href="#">No</a>
           </div>
         </div>
@@ -55,48 +57,33 @@
     <div class="container-fluid">
       <div class="row left">
         <div class="col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
+          <ul id="noteBooksNavList" class="nav nav-sidebar">
             <li class="active"><a href="#">NOTEBOOKS<span class="sr-only">(current)</span></a></li>
 			      <li><a href="#createNotebook">+ Create notebook</a></li>
-            <li><a href="#">(Default notebook)</a></li>
-            <li><a href="#">College</a></li>
-            <li><a href="#">Work</a></li>
           </ul>
         </div>
-		<div class="col-md-2 sidebar">
-        <ul class="nav nav-sidebar">
-          <li class="active"><a href="#">NOTES<span class="sr-only">(current)</span></a></li>
-  	       <li><a href="#">+ Create note</a></li>
-          <li><a href="#">note1</a></li>
-          <li><a href="#">note2</a></li>
-          <li><a href="#">note3</a></li>
-        </ul>
-    </div>
-    <div class="col-md-1 sidebar buttons-big-container">
-      <div class="big-buttons-container">
-        <div class="big-buttons">
-          <a><img class="button-icons" src="img/save-button.png"></a>  
+    		<div class="col-md-2 sidebar">
+            <ul id="notesNavList" class="nav nav-sidebar">
+              <li class="active"><a href="#">NOTES<span class="sr-only">(current)</span></a></li>
+      	      <li><a href="#">+ Create note</a></li>
+            </ul>
         </div>
-        <div class="big-buttons">
-          <a href="#deleteNote"><img class="button-icons" src="img/delete-button.png"></a>  
-        </div>
-      </div>
-    </div>
-		<div class="col-md-7 sidebar no-padding-left">
-          <div class="tools">
-            <textarea id="mytextarea">Hello, World!</textarea>
+        <div class="col-md-1 sidebar buttons-big-container">
+          <div class="big-buttons-container">
+            <div class="big-buttons">
+              <a onclick="onSaveClick()"><img class="button-icons" src="img/save-button.png"></a>  
+            </div>
+            <div class="big-buttons">
+              <a href="#deleteNote"><img class="button-icons" src="img/delete-button.png"></a>  
+            </div>
           </div>
-		  <div class="note container-fluid"> 
-		    <div class="note-title">
-			  <h2>js:title</h2>
-			</div> 
-			<div class="note-body">
-			  Lorem Ipsum ....
-			  ....
-			  ....
-			</div>
-		  </div>
         </div>
+    		<div class="col-md-7 sidebar no-padding-left">
+          <div class="tools">
+            <textarea id="noteText"></textarea>
+          </div>
+    		</div>
       </div>
     </div>
-</body></html>
+  </body>
+</html>
