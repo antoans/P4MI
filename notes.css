@@ -43,6 +43,37 @@
   padding-right: 20px;
   padding-left: 20px;
 }
+
+.listItems {
+  display: inline-flex !important;
+}
+
+.leftItems {
+  width: 79%;
+}
+
+.smallDelete {
+  float: right;
+  margin-top: 3px;
+  visibility: hidden;
+}
+
+.nav-sidebar > li > a:focus {
+  background-color: #d6d6d6;
+}
+
+.nav-sidebar > .selected {
+  background-color : #d6d6d6 !important;
+}
+
+.nav-sidebar > .selected > a {
+  visibility: visible !important; 
+}
+
+.nav-sidebar > .selected > a:hover {
+  background-color : #d6d6d6 !important;
+}
+
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
@@ -115,6 +146,12 @@
   display: block;
   width: 40px;
   height: 40px;
+}
+
+.small-buttons {
+  width: 14px;
+  height: 14px;
+  float: right;
 }
 
 .big-buttons-container {

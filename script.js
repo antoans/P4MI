@@ -60,7 +60,14 @@ $(document).ready(function () {
 
   	//Load notebooks
   	mockData.forEach(function(notebook) {
-  		$("#noteBooksNavList").append('<li><a href="#" onclick="onNoteBookClick(' + notebook.id + ')">' + notebook.title + '</a></li>');
+  		if (notebook.id != 0) {
+  			$("#noteBooksNavList").append('<li id=' + "noteBook" + notebook.id + '><a class="listItems leftItems" href="#" onclick="onNoteBookClick(' + notebook.id + ')">' + notebook.title +
+  			'</a><a class="listItems smallDelete" href="#deleteNoteBook"><img class="small-buttons" src="img/delete-button.png"</a></li>');
+  		} else {
+  			$("#noteBooksNavList").append('<li id=' + "noteBook" + notebook.id + '><a class="listItems leftItems" href="#" onclick="onNoteBookClick(' + notebook.id + ')">' + notebook.title +
+  			'</a></li>');
+  		}
+  		
   	})
 
   	onNoteBookClick(0);
@@ -75,7 +82,7 @@ function onNoteBookClick(notebookId) {
 	ulNotes.find('li').slice(2).remove();
 	
 	clickedNoteBook.notes.forEach(function (note) {	
-		ulNotes.append('<li id='+ note.id + '><a href="#" onclick="(function() {onNoteClick(' + clickedNoteBook.id + "," + note.id + ')})()">' + note.title + '</a></li>');
+		ulNotes.append('<li id=' + "note" +  note.id + '><a href="#" onclick="(function() {onNoteClick(' + clickedNoteBook.id + "," + note.id + ')})()">' + note.title + '</a></li>');
 	})
 
 	onNoteClick(clickedNoteBook.id, 0);
@@ -89,8 +96,27 @@ function onNoteBookCreate(newNotebookTitle) {
 		notes : []
 	}
 	mockData.push(newNoteBook);
-	$("#noteBooksNavList").append('<li id='+ newNoteBook.id + '><a href="#" onclick="onNoteBookClick(' + newNoteBook.id + ')">' + newNoteBook.title + '</a></li>');
+	$("#noteBooksNavList").append('<li id='+ "noteBook" + newNoteBook.id + '><a class="listItems leftItems" href="#" onclick="onNoteBookClick(' + newNoteBook.id + ')">' + newNoteBook.title +
+		'</a><a class="listItems smallDelete" href="#deleteNoteBook"><img class="small-buttons" src="img/delete-button.png"</a></li>');
 	onNoteBookClick(newNoteBook.id);
+}
+
+function onNoteCreate(newNoteTitle) {
+	var noteBook = getNoteBookById(currentlySelectedNote.noteBookId);
+	var prevId;
+	if (noteBook.notes.length == 0) {
+		prevId = -1;
+	} else {
+		prevId = noteBook.notes[noteBook.notes.length -1].id;
+	}
+	var newNote = {
+		id : prevId + 1,
+		title : newNoteTitle,
+		text : ""
+	}
+	noteBook.notes.push(newNote);
+	$("#notesNavList").append('<li id=' + "note" + newNote.id + '><a href="#" onclick="onNoteClick(' + noteBook.id + ", " + newNote.id + ')">' + newNote.title + '</a></li>');
+	onNoteClick(noteBook.id, newNote.id);
 }
 
 function onNoteClick(noteBookId, noteId) {
@@ -120,10 +146,19 @@ function onDeleteNote() {
 		return note.id != noteForDelete.id;
 	});
 
-	$('#' + noteForDelete.id)[0].remove();
+	$('#note' + noteForDelete.id)[0].remove();
 	onNoteClick(noteBook.id, 0);
 }
 
+function onDeleteNoteBook() {
+	var noteBookForDelete = getNoteBookById(currentlySelectedNote.noteBookId);
+	mockData = mockData.filter(function(noteBook) {
+		return noteBook.id != noteBookForDelete.id;
+	});
+
+	$('#noteBook' + noteBookForDelete.id)[0].remove();
+	onNoteBookClick(0, 0);
+}
 
 //UTILS
 
@@ -144,6 +179,14 @@ function getNoteById(noteBookId, noteId) {
 }
 
 function updateSelection(noteBookId, noteId) {
+	var noteUlId = noteId + 2;
+	var noteBookUlId = noteBookId + 2;
+
+	$("#notesNavList li").removeClass("selected");
+	$('#notesNavList li:eq(' + noteUlId + ')').addClass("selected");
+	$("#noteBooksNavList li").removeClass("selected");
+	$('#noteBooksNavList li:eq(' + noteBookUlId + ')').addClass("selected");
+
 	currentlySelectedNote = {
 		noteBookId : noteBookId,
 		noteId : noteId

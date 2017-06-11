@@ -39,6 +39,31 @@
         </div>
       </div>
     </div>
+    <div id="createNote" class="overlay">
+      <div class="popup">
+        <h2>Create Note</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+          <input id="newNoteTitle" class="form-control small-margin" placeholder="Enter title" type="Text" name="noteBookName">
+          <a class="btn btn-primary btn-block" onclick='(function () {
+              onNoteCreate($("#newNoteTitle").val());
+              $("#newNoteTitle").val("")
+            })()' href="#" >Create</a>
+        </div>
+      </div>
+    </div>
+    <div id="deleteNoteBook" class="overlay">
+      <div class="popup">
+        <h2>Delete NoteBook</h2>
+        <div class="content">
+          <p>Are you sure you want to delete this NoteBook?</p>
+          <div>
+            <a class="btn btn-primary yes-no-buttons" onclick="onDeleteNoteBook()" href="#">Yes</a>
+            <a class="btn btn-primary yes-no-buttons" href="#">No</a>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="deleteNote" class="overlay">
       <div class="popup">
         <h2>Delete note</h2>
@@ -65,7 +90,7 @@
     		<div class="col-md-2 sidebar">
             <ul id="notesNavList" class="nav nav-sidebar">
               <li class="active"><a href="#">NOTES<span class="sr-only">(current)</span></a></li>
-      	      <li><a href="#">+ Create note</a></li>
+      	      <li><a href="#createNote">+ Create note</a></li>
             </ul>
         </div>
         <div class="col-md-1 sidebar buttons-big-container">
