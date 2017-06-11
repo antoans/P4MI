@@ -6,7 +6,7 @@ this.mockData = [
 				{
 					id : 0,
 					title : "note1",
-					text : "asda"
+					text : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 				},
 				{
 					id : 1,
@@ -61,10 +61,10 @@ $(document).ready(function () {
   	//Load notebooks
   	mockData.forEach(function(notebook) {
   		if (notebook.id != 0) {
-  			$("#noteBooksNavList").append('<li id=' + "noteBook" + notebook.id + '><a class="listItems leftItems" href="#" onclick="onNoteBookClick(' + notebook.id + ')">' + notebook.title +
-  			'</a><a class="listItems smallDelete" href="#deleteNoteBook"><img class="small-buttons" src="img/delete-button.png"</a></li>');
+  			$("#noteBooksNavList").append('<li class="listItems" id=' + "noteBook" + notebook.id + '><a class="leftItems" href="#" onclick="onNoteBookClick(' + notebook.id + ')">' + notebook.title +
+  			'</a><a class="smallDelete" href="#deleteNoteBook"><img class="small-buttons" src="img/delete-button.png"</a></li>');
   		} else {
-  			$("#noteBooksNavList").append('<li id=' + "noteBook" + notebook.id + '><a class="listItems leftItems" href="#" onclick="onNoteBookClick(' + notebook.id + ')">' + notebook.title +
+  			$("#noteBooksNavList").append('<li class="listItems" id=' + "noteBook" + notebook.id + '><a class="leftItems" href="#" onclick="onNoteBookClick(' + notebook.id + ')">' + notebook.title +
   			'</a></li>');
   		}
   		
@@ -96,8 +96,8 @@ function onNoteBookCreate(newNotebookTitle) {
 		notes : []
 	}
 	mockData.push(newNoteBook);
-	$("#noteBooksNavList").append('<li id='+ "noteBook" + newNoteBook.id + '><a class="listItems leftItems" href="#" onclick="onNoteBookClick(' + newNoteBook.id + ')">' + newNoteBook.title +
-		'</a><a class="listItems smallDelete" href="#deleteNoteBook"><img class="small-buttons" src="img/delete-button.png"</a></li>');
+	$("#noteBooksNavList").append('<li class="listItems" id='+ "noteBook" + newNoteBook.id + '><a class="leftItems" href="#" onclick="onNoteBookClick(' + newNoteBook.id + ')">' + newNoteBook.title +
+		'</a><a class="smallDelete" href="#deleteNoteBook"><img class="small-buttons" src="img/delete-button.png"</a></li>');
 	onNoteBookClick(newNoteBook.id);
 }
 

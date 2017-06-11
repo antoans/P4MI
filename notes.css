@@ -45,7 +45,8 @@
 }
 
 .listItems {
-  display: inline-flex !important;
+  display: flex !important;
+  width: 100%;
 }
 
 .leftItems {
